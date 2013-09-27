@@ -1,0 +1,148 @@
+
+1.- Crear usuario slave en el master 045 2 416764 lily villarrica
+-------------------------------------------------------------------
+
+		mysql> GRANT REPLICATION SLAVE ON *.*
+		    -> TO 'slave'@'%' IDENTIFIED BY 'helcom211';
+
+2.- Si está usando tablas InnoDB , deberi­a usar la herramienta InnoDB Hot 
+	Backup.
+		Sin la herramienta Hot Backup , la forma mas rapida de hacer una 
+	copia binaria de los datos de las tablas InnoDB es parar el maestro y
+	copiar los ficheros de datos InnoDB, ficheros de log, y ficheros de 
+	definición de tablas (ficheros .frm). Para guardar los nombres de 
+	ficheros actual y desplazamientos, debe ejecutar el siguiente comando
+	antes de parar el servidor:
+
+		mysql> FLUSH TABLES WITH READ LOCK;
+		mysql> SHOW MASTER STATUS;
+
+	Luego guarde el nombre del log y el desplazamiento desde la salida de
+	SHOW MASTER STATUS como se mostraba antes. Tras guardar el nombre del 
+	log y el desplazamiento, pare el servidor sin bloquear las tablas para
+	asegurarse que el servidor para con el conjunto de datos correspondiente
+	al fichero de log correspondiente y desplazamiento:
+
+	Una alternativa que funciona para tablas MyISAM y InnoDB es realizar 
+	un volcado SQL del maestro en lugar de una copia binaria como se 
+	describe en la discusion precedente. Para ello, puede usar 
+	mysqldump --master-data en su maestro y cargar posteriormente el fichero
+	de volcado SQL en el esclavo. Sin embargo, esto es mÃ¡s lento que hacer
+	una copia binaria.
+
+	cambiarse al directorio de datos del maestro.
+
+		tar -cvf /tmp/mysql-snapshot.tar .
+	se creara el archivo para descomprimir en el el directorio de datos del slave.
+
+
+3.-	Asegurese que la seccion [mysqld] del fichero my.cnf en el MAESTRO 	incluye una opcion log-bin . Esta seccion debe tambien tener la	opcion 	server-id=master_id , donde master_id debe ser un entero positivo 
+	de 1 a 2^32 - 1. Por ejemplo:
+
+		server-id=1
+		log-bin = mysql-bin
+		sync_binlog                     = 1
+		max-binlog-size                 = 500M
+		expire_logs_days                = 10
+		innodb_flush_log_at_trx_commit  = 1
+		binlog-format					= MIXED
+
+	Si estas opciones no estan presentes, añadalas y reinicie el servidor.
+
+
+
+4.- 	Pare el servidor que se vaya a usar como ESCLAVO y añada lo siguiente a su 
+	fichero my.cnf 
+
+		server-id=2
+		relay-log               		= mysqld-relay-bin
+		max-relay-log-size      		= 500M
+		relay_log_purge         		= 1
+
+		*6F2767442D6162CE5C7BD476A7B75CEB3884099E
+
+
+5.-	Arranque el esclavo. Si ha estado replicando previamente, arranque el 
+	esclavo con la opcion --skip-slave-start para que no intente 
+	conectar inmediatamente al maestro.
+
+
+6.-	Si hace una copia de seguridad de los datos del maestro usando 
+	mysqldump, cargue el fichero de volcado en el esclavo:
+
+		shell> mysql -u root -p < dump_file.sql
+
+
+7.-	Ejecute los siguientes comandos en el esclavo, reemplazando los valores
+	de opciones con los valores relevantes para su sistema:
+
+		mysql> CHANGE MASTER TO
+		    ->     MASTER_HOST='master_host_name',
+		    ->     MASTER_USER='replication_user_name',
+		    ->     MASTER_PASSWORD='replication_password',
+		    ->     MASTER_LOG_FILE='recorded_log_file_name',
+		    ->     MASTER_LOG_POS=recorded_log_position;
+
+	La siguiente tabla muestra la longitud maxima para las opciones de cadenas
+	de caracteres:
+
+
+8.-	Arranque el flujo esclavo:
+
+		mysql> START SLAVE;
+
+
+Una vez realizado este procedimiento, el esclavo debe conectar con el maestro 
+y atapar cualquier actualizaciÃ³n que haya ocurrido desde que se obtuvieron los
+datos.
+
+
+GRANT ALL PRIVILEGES ON *.* \
+   TO 'debian-sys-maint'@'%' \
+   IDENTIFIED BY '0tyzQO8xBV1vcnDr' \
+   WITH GRANT OPTION MAX_QUERIES_PER_HOUR 0 \
+   MAX_CONNECTIONS_PER_HOUR 0 \
+   MAX_UPDATES_PER_HOUR 0 \
+   MAX_USER_CONNECTIONS 0;
+
+
+
+
+2 Repairing The Replication
+Just to go sure, we stop the slave:
+mysql> STOP SLAVE;
+
+
+
+Fixing the problem is actually quite easy. We tell the slave to simply skip the invalid SQL query:
+   mysql> SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 1;
+
+
+
+This tells the slave to skip one query (which is the invalid one that caused the replication to stop). If you'd like to skip two queries, you'd use SET GLOBAL SQL_SLAVE_SKIP_COUNTER = 2; instead and so on.
+
+That's it already. Now we can start the slave again...
+
+mysql> START SLAVE;
+
+As you see, both Slave_IO_Running and Slave_SQL_Running are set to Yes now.
+
+Now leave the MySQL shell...
+
+mysql> quit;
+
+... and check the log again:
+
+grep mysql /var/log/syslog
+
+server1:/home/admin# grep mysql /var/log/syslog
+May 29 09:56:08 http2 mysqld[1380]: 080529 9:56:08 [ERROR] Slave: Error 'Table 'mydb.taggregate_temp_1212047760' doesn't exist' on query. Default database: 'mydb'. Query: 'UPDATE thread AS thread,taggregate_temp_1212047760 AS aggregate
+May 29 09:56:08 http2 mysqld[1380]: ^ISET thread.views = thread.views + aggregate.views
+May 29 09:56:08 http2 mysqld[1380]: ^IWHERE thread.threadid = aggregate.threadid', Error_code: 1146
+May 29 09:56:08 http2 mysqld[1380]: 080529 9:56:08 [ERROR] Error running query, slave SQL thread aborted. Fix the problem, and restart the slave SQL thread with "SLAVE START". We stopped at log 'mysql-bin.001079' position 203015142
+May 29 11:42:13 http2 mysqld[1380]: 080529 11:42:13 [Note] Slave SQL thread initialized, starting replication in log 'mysql-bin.001079' at position 203015142, relay log '/var/lib/mysql/slave-relay.000130' position: 100125935
+server1:/home/admin#
+
+The last line says that replication has started again, and if you see no errors after that line, everything is ok.
+
+ 

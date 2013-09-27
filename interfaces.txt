@@ -1,0 +1,27 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# Interface de red principal
+# (es la interface física más cercana a puerto VGA)
+auto eth0
+iface eth0 inet static
+address 192.168.4.100
+netmask 255.255.255.0
+gateway 192.168.4.1
+dns-nameservers 200.50.96.90,200.50.144.227
+
+# Interface de emergencia para conectarse punto a punto
+# IP del otro punto debe ser en segmento .1.*
+auto eth1
+iface eth1 inet static
+address 192.168.4.101
+netmask 255.255.255.0
+
+
+# interface eth0 con DHCP
+allow-hotplug eth0
+iface eth0 inet dhcp

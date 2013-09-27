@@ -1,0 +1,35 @@
+ejemplo de como enviar un correo en la terminal en debian
+
+1.-	instalar sendemail
+
+	apt-get install sendemail
+
+
+
+2.-	instalar las siguientes librerias
+
+	apt-get install libnet-ssleay-perl libio-socket-ssl-perl
+
+
+3.-	una vez hecho esto se puede comenzar a enviar correos con sendemail
+
+	ejemplo:
+
+		root@debian~$ sendemail \
+		> -f cristian.a.reyes@googlemail.com \
+		> -t creyes@helpcom.cl \
+		> -s smtp.gmail.com:587 \
+		> -o tls=yes \
+		> -xu cristian.a.reyes \
+		> -u "asunto" \
+		> -m "contenido del Mail ..." 	(presionar enter)
+		> -a <archivo a adjuntar> 	(en caso que se requiera)
+
+		password:
+
+ 
+4.-	ingresar la passwd y chann ...  el mensaje se ha enviado con exito !
+
+solucionar error en linea 332
+Error invalid SSL_version specified at /usr/share/perl5/IO/Socket/SSL.pm line 332
+http://gacimartin.com/2013/06/09/error-invalid-ssl_version-specified-at-usrshareperl5iosocketssl-pm-line-332/

@@ -1,0 +1,122 @@
+configuracion de samba en Helpcom
+------------------------------------------------------------------------------
+# mkdir -p /home/samba-share/helpcom
+# chown -R root:users /home/samba-share/helpcom/
+# chmod -R ug+rwx,o+rx-w /home/samba-share/helpcom/
+
+dar todos los permisos a la capeta helpcom
+------------------------------------------------------------------------------
+
+en el archivo de configuracion de samba
+modificar e incluir lo siguiente
+------------------------------------------------------------------------------
+security = share
+
+unix password sync = no
+
+
+[Helpcom]
+comment = All Users
+path = /home/samba-share/helpcom
+writable = yes
+public = yes
+guest ok = yes
+browseable = yes
+
+
+cliente samba desde debian
+------------------------------------------------------------------------------
+smbclient //servidor/carpeta 
+mostrar archivos con ls (igual que en FTP)
+
+
+smbmount //servidor/carpeta /mnt/carpeta -o username=cristian
+
+si no existe smbmount montar con cifs
+
+apt-get install cifs-utils
+mount-cifs //servidor/carpeta /mnt/carpeta
+
+
+
+					fin
+
+
+------------------------------------------------------------------------------
+Instalando Samba (solo si no se ha instalado desde la instalacion de 
+debian squeeze)
+--------------------------------
+La instalación de este servicio en Debian es realmente simple. Lo único que 
+tendremos que hacer es instalar tres paquetes con el siguiente comando:
+
+# apt-get install libcupsys2 samba samba-common
+
+Si queremos que únicamente puedan acceder aquellas personas que dispongan 
+de una cuenta en el servidor deberemos buscar la siguiente linea:
+
+# security = user
+
+y descomentarla eliminando la almohadilla que la precede. Tras activar 
+esta opción necesitaremos reiniciar el servicio ejecutando el 
+siguiente comando:
+
+/etc/init.d/samba restart
+
+
+Añadiendo carpetas compartidas
+---------------------------------
+Con los siguiente tres comandos crearemos un directorio, cambiaremos 
+su grupo al grupo de usuarios y le asignaremos los permisos adecuados.
+
+# mkdir -p /home/samba-share/allusers
+# chown -R root:users /home/samba-share/allusers/
+# chmod -R ug+rwx,o+rx-w /home/samba-share/allusers/
+
+A continuación editaremos el fichero /etc/samba/smb.conf y añadiremos 
+las siguiente lineas al final del mismo, sustituyendo la ruta al directorio 
+por la que usasteis anteriormente:
+
+[allusers]
+comment = All Users
+path = /home/samba-share/allusers
+valid users = @users
+force group = users
+create mask = 0660
+directory mask = 0771
+writable = yes
+
+Con nuestro directorio compartido configurado en Samba, solo necesitamos
+reiniciar el servicio nuevamente para poder empezar a usarlo:
+
+# /etc/init.d/samba restart
+
+
+Configurando usuarios
+---------------------------------
+
+Ya que hemos configurado el servidor Samba para aceptar solo conexiones 
+de usuarios de nuestro sistema, necesitaremos crear un usuario y 
+asignarle una contraseña:
+
+# useradd samba-user -m -G users
+# passwd samba-user
+
+Por último, añadiremos a este usuario a la base de datos de usuarios de 
+Samba y le asignaremos una contraseña, la cual será la que usemos en 
+las conexiones remotas:
+
+# smbpasswd -a samba-user
+
+Probando el servidor
+---------------------------------
+
+Si todo ha ido bien, lo único que tendremos que hacer para comenzar a 
+usar nuestro nuevo servidor Samba será acceder a el desde, por ejemplo, 
+el explorador de Windows, escribiendo lo siguiente en la barra de 
+direcciones:
+
+\\IP_servidor
+
+o si no,
+
+\\IP_servidor\Carpeta_compartida
