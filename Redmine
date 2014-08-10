@@ -1,0 +1,43 @@
+Instalar Apache y lib:
+
+  #apt-get install apache2 libapache2-mod-passenger
+  
+  
+Instalar mysql:
+
+  #apt-get install mysql-server mysql-client
+  
+  
+Instalar Redmine:
+
+  #apt-get install redmine redmine-mysql
+  
+  
+Configuarar apache Modificando lo siguiente:
+
+  #cd /etc/apache2/mods-available/
+  #nano passenger.conf
+  
+    <IfModule Mod_Passenger.cl>
+      PassengerDefaultUser www-data
+      PassengerRoot /usr
+      PassengerRuby /usr/bin/ruby
+    </IfModule>
+    
+    
+  #cd /etc/apache2/sites-available/
+  #nano default
+  
+    <Directory /var/www/redmine>
+      RailsBaseURI /redmine
+      PassengerResolveSymlinksInDocumentRoot on
+    </Directory>
+  
+  #ln -s /usr/share/redmine/public /var/www/redmine
+  
+  #chmod 755 /var/www/redmine 
+  
+  #service apache2 restart
+  
+  
+  
