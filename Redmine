@@ -18,7 +18,7 @@ Configuarar apache Modificando lo siguiente:
   #cd /etc/apache2/mods-available/
   #nano passenger.conf
   
-    <IfModule Mod_Passenger.cl>
+    <IfModule Mod_Passenger.c>
       PassengerDefaultUser www-data
       PassengerRoot /usr
       PassengerRuby /usr/bin/ruby
