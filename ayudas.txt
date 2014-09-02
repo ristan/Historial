@@ -1,3 +1,14 @@
+NANO
+
+A pesar de lo antiguo que es el sistema de ayuda de nano, no especifica bien quÃ© es lo que hay que hacer para seleccionar, copiar, cortar y pegar. La cosa es asÃ­:
+
+Para seleccionar Esc+a, y con las teclas del cursor abarcamos hasta donde queremos seleccionar. A continuaciÃ³n, dependiendo de lo que querramos hacer:
+Para copiar lo seleccionado al buffer Esc+6
+Para cortar lo seleccionado al buffer Ctrl+k
+Para pegar el contenido del buffer Ctrl+u
+
+
+
 
 ********************************************************************
 reiniciar servicio windows por consola
@@ -14,44 +25,44 @@ comentar bind-address = 127.0.0.0
 
 ********************************************************************
 
-Para abrir la consola sólo tienes que pulsar al mismo tiempo la tecla 
-Mayús y el botón derecho del ratón sobre cualquier zona vacía de la 
-ventana correspondiente a la carpeta deseada. En el menú contextual 
-selecciona la opción Abrir ventana de comandos aquí.
+Para abrir la consola sÃ³lo tienes que pulsar al mismo tiempo la tecla 
+MayÃºs y el botÃ³n derecho del ratÃ³n sobre cualquier zona vacÃ­a de la 
+ventana correspondiente a la carpeta deseada. En el menÃº contextual 
+selecciona la opciÃ³n Abrir ventana de comandos aquÃ­.
 
 ********************************************************************
 
 echo %NAME_OF_THE_VARIABLE%
-A continuación se proporciona una lista incompleta de las principales
+A continuaciÃ³n se proporciona una lista incompleta de las principales
 variables del entorno en un sistema Windows:
 
-Variable del entorno	Descripción
+Variable del entorno	DescripciÃ³n
 --------------------------------------------------------------------
 %APPDATA%		Muestra una ruta de acceso al directorio predeterminado que contiene los programas del usuario (por defecto: C:\Program Files\.
-%CMDCMDLINE%		Muestra el comando exacto empleado para acceder al intérprete de comandos (cmd.exe).
+%CMDCMDLINE%		Muestra el comando exacto empleado para acceder al intÃ©rprete de comandos (cmd.exe).
 %COMPUTERNAME%		Muestra el nombre dado a un equipo.
 %DATE%			Muestra la fecha actual.
-%ERRORLEVEL%		Contiene el código del error del último comando utilizado.
-%HOMEDRIVE%		Contiene la letra de la unidad en la que está ubicado el directorio actual del usuario.
-%HOMEDRIVE%		Contiene la letra de la unidad en la que está ubicado el directorio actual del usuario.
+%ERRORLEVEL%		Contiene el cÃ³digo del error del Ãºltimo comando utilizado.
+%HOMEDRIVE%		Contiene la letra de la unidad en la que estÃ¡ ubicado el directorio actual del usuario.
+%HOMEDRIVE%		Contiene la letra de la unidad en la que estÃ¡ ubicado el directorio actual del usuario.
 %HOMEPATH%		Contiene la ruta de acceso completa al directorio actual del usuario.
 %NUMBER_OF_PROCESSOR%	Contiene la cantidad de procesadores presentes en el sistema.
 %OS%			Contiene una cadena de caracteres que describen el sistema operativo instalado. Se debe tener en cuenta que Windows 2000 se identifica como WINDOWS_NT.
-%PATH%			Especifica la ruta de acceso a los archivos ejecutables más importantes del sistema.
+%PATH%			Especifica la ruta de acceso a los archivos ejecutables mÃ¡s importantes del sistema.
 %PATHEXT%		Describe las extensiones que el sistema considera ejecutables.
 %PROCESSOR_ARCHITECTURE%	Describe la arquitectura del procesador (x86 para equipos Intel, IA64 para arquitecturas RISC).
-%RANDOM%		Muestra un número entero entre 0 y 32167 elegido al azar por el sistema.
+%RANDOM%		Muestra un nÃºmero entero entre 0 y 32167 elegido al azar por el sistema.
 %SYSTEMDRIVE%		Contiene la letra de la unidad en la que se ubica el sistema (por lo general C:).
-%SYSTEMROOT%		Contiene la ruta de acceso al directorio raíz del sistema.
+%SYSTEMROOT%		Contiene la ruta de acceso al directorio raÃ­z del sistema.
 %TEMP%			Contiene la ruta de acceso al directorio temporal para las aplicaciones.
 %TMP%			Contiene la ruta de acceso al directorio temporal para las aplicaciones.
-%TIME%			Muestra la fecha del día.
+%TIME%			Muestra la fecha del dÃ­a.
 %USERDOMAIN%		Contiene el dominio al que pertenece la cuenta actual.
 %USERNAME%		Contiene el nombre de usuario que corresponde a la cuenta actual.
-%USERPROFILE%		Contiene la ubicación del perfil de usuario de la cuenta actual.
+%USERPROFILE%		Contiene la ubicaciÃ³n del perfil de usuario de la cuenta actual.
 %WINDIR%		Contiene la ruta de acceso al directorio del sistema (generalmente C:\WINDOWS o C:\WINNT).
 
 En Windows, el comando set permite crear, modificar y mostrar las variables del 
-entorno. Sin embargo, los cambios se efectúan sólo en la sesión en progreso.
+entorno. Sin embargo, los cambios se efectÃºan sÃ³lo en la sesiÃ³n en progreso.
 
 ********************************************************************
