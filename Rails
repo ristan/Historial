@@ -8,7 +8,9 @@ Instalacion
     
 2.- Agregar al perfil de usuario
 
-    source /etc/profile
+    vi /desarrollador/.bash_profile
+    
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
     
     
 3.- requeriments
@@ -22,3 +24,53 @@ Instalacion
 5.- instalar rails
 
     gem install rails
+
+
+6.- rvm info , para revisar la configuración
+
+7.- type rvm | head -1
+
+        "rvm is a function"
+        
+        
+8.-  instalar passenger
+        gem install passenger --no-ri --no-rdoc
+        
+9.- luego instalar passenger
+
+        passenger-install-apache2-module
+        
+        
+10 .- editar el archivo de configuración de apache y agregar lo que indica la instalacion y compilacion
+      de passenger.
+      
+        LoadModule passenger_module /home/administrador/.rvm/gems/ruby-2.1.2/gems/passenger-4.0.50/buildout/apache2/mod_passenger.so
+
+        <IfModule mod_passenger.c>
+            PassengerRoot /home/administrador/.rvm/gems/ruby-2.1.2/gems/passenger-4.0.50
+            PassengerDefaultRuby /home/administrador/.rvm/gems/ruby-2.1.2/wrappers/ruby
+        </IfModule>
+        
+        
+11 .- desploy aplicacion
+
+        <VirtualHost *:80>
+            ServerName www.yourhost.com
+            # !!! Be sure to point DocumentRoot to 'public'!
+            DocumentRoot /somewhere/public
+            <Directory /somewhere/public>
+                #This relaxes Apache security setting.
+                AllowOverride all
+                # MultiViews must be turned off.
+                Options -MultiViews
+                #uncomment this if you're on Apache >= 2.4:
+                #Require all granted
+            </Directory>
+        </VirtualHost>
+        
+      
+    
+
+        
+
+
