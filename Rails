@@ -1,0 +1,24 @@
+Instalacion
+
+
+1.- Para multiples usuarios
+
+    curl -sSL https://get.rvm.io | sudo bash -s stable --rails
+    
+    
+2.- Agregar al perfil de usuario
+
+    source /etc/profile
+    
+    
+3.- requeriments
+    
+    rvm requeriments
+    
+4.- instalar ruby
+
+    rvm install 2.1.2
+    
+5.- instalar rails
+
+    gem install rails
