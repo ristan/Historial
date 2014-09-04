@@ -59,6 +59,7 @@ Instalacion
             # !!! Be sure to point DocumentRoot to 'public'!
             DocumentRoot /somewhere/public
             <Directory /somewhere/public>
+                RailsEnv development
                 #This relaxes Apache security setting.
                 AllowOverride all
                 # MultiViews must be turned off.
