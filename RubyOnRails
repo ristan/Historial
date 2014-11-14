@@ -1,0 +1,167 @@
+instalar ruby-dev
+apt-get install ruby-dev
+
+page_cache_directory
+environments development
+
+	config.action_controller.perform_caching = true
+	config.page_cache_directory = File.join Rails.root, 'public', 'cache'
+	config.action_controller.page_cache_directory = File.join Rails.root, 'public', 'cache'
+
+Gemfile
+	gem 'protected_attributes'
+	gem 'rails-observers'
+	gem 'actionpack-page_caching'
+	gem 'actionpack-action_caching'
+
+Bootstrap
+	group :assets do
+	  gem 'twitter-bootstrap-rails'
+	end
+
+reiniciar
+	sudo shutdown -r now
+	hosteter 790 dto 603
+
+instalar gema mysql
+
+	gem install mysql2
+	gem uninstall mysql2
+
+especificar rails
+	rvm use 1.9.3 --default
+
+gem list rails
+gem list
+gem list -d rails
+
+instalar mysql2 con la ruta donde esta mysql (alfinal de todo se debe usar el libmysql.dll que esta en la carpeta de xamp)
+	gem install mysql2 -- --with-mysql-dir=C:\xampp\mysql
+
+1.- Generar un modelo de prueba
+	C:\Sites\app>rails g model Persona nombre:string apellido:string edad:string desc:text
+	      invoke  active_record
+	      create    db/migrate/20140714004333_create_personas.rb
+	      create    app/models/persona.rb
+	      invoke    test_unit
+	      create      test/models/persona_test.rb
+	      create      test/fixtures/personas.yml
+
+2.- Hacer la migracion del active record
+	C:\Sites\app>rake db:migrate
+	== 20140714004333 CreatePersonas: migrating ===================================
+	-- create_table(:personas)
+	   -> 0.7260s
+	== 20140714004333 CreatePersonas: migrated (0.7300s) ==========================
+
+3.- Crear el controlador
+	C:\Sites\app>rails g controller home index
+	      create  app/controllers/home_controller.rb
+	       route  get 'home/index'
+	      invoke  erb
+	      create    app/views/home
+	      create    app/views/home/index.html.erb
+	      invoke  test_unit
+	      create    test/controllers/home_controller_test.rb
+	      invoke  helper
+	      create    app/helpers/home_helper.rb
+	      invoke    test_unit
+	      create      test/helpers/home_helper_test.rb
+	      invoke  assets
+	      invoke    coffee
+	      create      app/assets/javascripts/home.js.coffee
+	      invoke    scss
+	      create      app/assets/stylesheets/home.css.scss
+
+para entrar a la consola del proyecto y generar los pruebas los 
+Modelos
+
+rails console
+	Persona.all
+
+Scafollding
+	rails g scaffold <nombretabla> <campos:tipos>
+	rails g scaffold backhaul zona:string sitio:string ipsw:string puertoSW:string ipEquipo:string mac:string ssid:string password_ssid:string frecuencia:string ancho_canal:string throghput:string nivel_enlace:string potencia_transmicion:string distancia:string azimuth:string marca:string modelo:string num_serie:string ver_firmware:string
+
+	rake db:migrate
+
+El Metodo REST
+	get		leer elementos
+	post 	crear
+	delete 	borrar	
+	put 	modificar elementos
+
+	crear
+	mostrar 
+	editat
+	nuevo
+	eliminar
+	actualizar
+
+	en una tienda en linea
+	subir un nuevo producto		- post
+	hacer una nueva venta 		- post
+	Actualizar el inventario 	- put
+	Eliminar un producto 		- delete
+	mostrar mi inventario 		- get
+
+Instalacion de Debian Whezzy con RVM
+=====================================================================
+sudo apt-get update
+
+\curl -L https://get.rvm.io | bash -s stable --rails
+
+source ~/.rvm/scripts/rvm
+
+rvm info
+
+rvm list
+
+rvm list known
+
+rvm install version_of_ruby
+
+rvm use version_of_ruby
+
+Si error !! al levantar el servidor !
+	/home/demo/.rvm/gems/ruby-2.0.0-p247/gems/execjs-2.0.2/lib/execjs/runtimes.rb:51:in `autodetect': Could not find a JavaScript runtime. See https://github.com/sstephenson/execjs for a list of available runtimes. (ExecJS::RuntimeUnavailable)
+	    from /home/demo/.rvm/gems/ruby-2.0.0-p247/gems/execjs-2.0.2/lib/execjs.rb:5:in `<module:ExecJS>'
+
+	nano Gemfile
+	gem 'execjs'
+	gem 'therubyracer'
+	bundle install
+	rails s
+
+Instalar Mysql
+
+	sudo apt-get install mysql-client libmysqlclient-dev
+	sudo gem install mysql2
+
+*****************************************************************+
+link 
+http://stackoverflow.com/questions/6148308/set-rails-version-as-default
+
+Using rack-ssl 1.3.4
+
+Gem::InstallError: The 'json' native gem requires installed build tools
+
+Please update your PATH to include build tools or download the DevKit
+from 'http://rubyinstaller.org/downloads' and follow the instructions
+at 'http://github.com/oneclick/rubyinstaller/wiki/Development-Kit'
+An error occurred while installing json (1.8.1), and Bundler cannot con
+Make sure that `gem install json -v '1.8.1'` succeeds before bundling.
+
+c:\Ruby193\devel\equipos>gem install json -v 1.8.1
+ERROR:  Error installing json:
+        The 'json' native gem requires installed build tools.
+
+        instalar ruby-dev
+		apt-get install ruby-dev
+
+Please update your PATH to include build tools or download the DevK
+from 'http://rubyinstaller.org/downloads' and follow the instructio
+at 'http://github.com/oneclick/rubyinstaller/wiki/Development-Kit'
+
+llave ssh:
+ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAtlgCqrS/f4nbx1MF+bC06HSDw0ZjK/dxJ4QHGPphdHv2DSsgqDpwWVRCmlSQS2XevEMN2ctCsaraKJGraAjSnzWokz2h9BK7qVgCEnM8I6IWTUF27YMkA37KsCH/E9e5ZntAJ3I4VKrG2R7VvHmr4fYQUIeuCsPpfO/Zq1mqR4NJoQJ1wpJg9Sm3sOK1ozZbPa6Z+2rA8198FeRFX6nkwd0C4i31lcjic7jkgrPZ+tWZ1lQFPbhLx2QNGiCHpljgWBsMvn4O6DebxIkOwpj1POqpCDFveDSFiFBMjwaKfs7GpUXGgsKfpSEb5QEbx6dEuNCKw87iwQ7J77Zn5KIYrw== ristan <cristian.a.reyes@googlemail.com>
