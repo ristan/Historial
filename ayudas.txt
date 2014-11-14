@@ -1,4 +1,30 @@
 **************************************
+Wlan0 en debian Zqueeze
+http://www.vicente-navarro.com/blog/2009/03/01/configurar-wep-y-wpa-en-linea-de-comandos-y-en-el-arranque-en-debian-y-ubuntu/
+
+iwconfig wlan0 up
+
+iwlist wlan0 scan
+
+~# wpa_passphrase "NOMBRE DE LA RED" CONTRASEÑA >> /etc/wpa_supplicant/wpa.conf
+
+# wpa_supplicant -i wlan0 -d wext -c /etc/wpa_supplicant/wpa.conf -B && dhclient wlan0
+
+Instalar wpa_supplicant:
+# aptitude install wpasupplicant
+-----------
+el primer fichero a editar o crear es /etc/wpa_supplicant.conf . Su contenido debemos dejarlo algo como:
+network={
+ssid=”mi-ssid”
+scan_ssid=1
+psk=”mi clave de WPA”
+proto=WPA
+key_mgmt=WPA-PSK
+}
+
+# /etc/init.d/networking restart
+
+**************************************
 audio en debian
 http://blog.hbautista.com/linux/configurar-alsa-en-debian-y-reproduccion-de-musica-en-segundo-plano/
 
