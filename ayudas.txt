@@ -1,3 +1,18 @@
+**************************************
+audio en debian
+~# cat /proc/asound/modules
+
+# lsmod |grep snd
+
+# aptitude install alsa-utils alsa-oss alsa-tools
+# alsaconf
+# alsactl init
+$ mplayer "03 Elysium.mp3" -loop 5
+
+hbautista@war-machine:~$ nohup mplayer -shuffle -loop 0 bond/*.mp3 &amp;
+
+
+***************************************
 NANO
 
 A pesar de lo antiguo que es el sistema de ayuda de nano, no especifica bien qué es lo que hay que hacer para seleccionar, copiar, cortar y pegar. La cosa es así:
