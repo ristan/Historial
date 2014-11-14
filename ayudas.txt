@@ -1,5 +1,7 @@
 **************************************
 audio en debian
+http://blog.hbautista.com/linux/configurar-alsa-en-debian-y-reproduccion-de-musica-en-segundo-plano/
+
 ~# cat /proc/asound/modules
 
 # lsmod |grep snd
