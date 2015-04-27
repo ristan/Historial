@@ -130,8 +130,11 @@ Si error !! al levantar el servidor !
 	nano Gemfile
 	gem 'execjs'
 	gem 'therubyracer'
+	
 	bundle install
 	rails s
+
+gem install libv8 -v '3.16.14.3' -- --with-system-v8
 
 Instalar Mysql
 
