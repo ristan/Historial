@@ -6,6 +6,8 @@ apt-get install build-essential
 sudo gem install libv8 -v '3.1.16.14
 sudo gem install therubyracer
 
+Arrancar el servidor WEB de Rails en todas las interfaces en modo Development
+rails s -b 0.0.0.0
 
 
 page_cache_directory
