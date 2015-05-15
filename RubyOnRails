@@ -5,6 +5,7 @@ apt-get install ruby
 apt-get install ruby-dev
 apt-get install build-essential
 apt-get install zlib1g-dev
+apt-get install libsqlite3-dev
 
 sudo gem install rails
 sudo gem install libv8 -v '3.1.16.14
