@@ -1,6 +1,7 @@
 Instalar y Configurar RoR
 -------------------------------------------------
 
+apt-get install ruby
 apt-get install ruby-dev
 apt-get install build-essential
 sudo gem install libv8 -v '3.1.16.14
