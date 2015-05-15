@@ -1,0 +1,48 @@
+
+
+Instalacion en Jessie
+
+1.- instalar packetes
+apt-get install freeradius freeradius-mysql freeradius-utils mysql-server mysql chkconfig php5 php5-mysql php5-db php5-pear
+
+2.- database
+CREATE DATABASE radius;
+GRANT ALL ON radius.* TO radius@localhost IDENTIFIED BY "radius@123";
+flush privileges;
+exit
+
+
+3.- 
+mysql -uradius -p radius < /etc/freeradius/sql/mysql/schema.sql
+
+vi /etc/freeradius/sql.conf
+
+# Connection info:
+    server = "localhost"
+    port = 3306
+    login = "radius"
+    password = "radius@123"
+# Database table configuration for everything except Oracle
+    radius_db = "radius"
+    
+$INCLUDE  sql.conf
+
+
+4.- descargar Dolaradius
+
+wget http://sourceforge.net/projects/daloradius/files/latest/download?source=files
+tar zxvf daloradius-0.9-9.tar.gz
+mysql -uradius -p radius < daloradius-0.9-9/contrib/db/fr2-mysql-daloradius-and-freeradius.sql
+
+vi daloradius-0.9-9/library/daloradius.conf.php
+
+ $configValues['DALORADIUS_VERSION'] = '0.9-9';
+• $configValues['FREERADIUS_VERSION'] = '2';
+• $configValues['CONFIG_DB_ENGINE'] = 'mysql';
+• $configValues['CONFIG_DB_HOST'] = 'localhost';
+• $configValues['CONFIG_DB_USER'] = 'radius';
+• $configValues['CONFIG_DB_PASS'] = 'radius@123';
+• $configValues['CONFIG_DB_NAME'] = 'radius';
+
+mv daloradius-0.9-9 /var/www/daloradius
+
