@@ -1,0 +1,40 @@
+install
+
+1.-
+apt-get install qemu-kvm libvirt-bin virtinst kvm virt-viewer
+
+2.-
+adduser proyectosbeta libvirt
+adduser proyectosbeta kvm
+
+modprobe kvm-intel
+
+Preparar la configuración de red para que los futuros guests tengan conectividad entre el host y los guest.
+Entramos en la consola y escribimos:
+nano /etc/network/interfaces
+
+Les podría salir algo similar a lo siguiente:
+auto eth0
+iface eth0 inet dhcp
+
+Deberían de llegar a algo como lo siguiente:
+auto br0
+iface br0 inet dhcp
+bridge_ports eth0
+bridge_stp off
+bridge_maxwait 5
+
+
+Ahora guardamos los cambios (Control + o) y luego lo cerramos (Control + x). Antes de crear una máquina virtual debe de reiniciar su sistema. Escribimos en la consola:
+reboot
+
+
+
+
+
+Luego de reiniciar podemos continuar.
+Creación de VM’s por línea de comando virt-install:
+
+Escribimos en la consola:
+virt-install --connect=qemu:///system --name=debianPrueba --ram=256 --vcpus=1 --check-cpu --os-type=linux --hvm --vnc --accelerate --disk=/home/proyectosbeta/debianPrueba.img,size=8,sparse=true --cdrom=/home/proyectosbeta/debian-7.0-amd64-netinst.iso --network=bridge:br0
+
