@@ -1,0 +1,5 @@
+install PfSense
+
+
+deshabiliar packet filter para acceder por wan
+pfctrl -d
