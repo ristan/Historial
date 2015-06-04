@@ -1,3 +1,7 @@
+
+Poner teclado español en xterm
+setxkbmap -layout es
+
 **************************************
 Wlan0 en debian Zqueeze
 http://www.vicente-navarro.com/blog/2009/03/01/configurar-wep-y-wpa-en-linea-de-comandos-y-en-el-arranque-en-debian-y-ubuntu/
