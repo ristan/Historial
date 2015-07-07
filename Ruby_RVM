@@ -8,3 +8,16 @@ gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A17031138    
 curl -L https://get.rvm.io | bash -s stable --rails
 
 source ~/.rvm/scripts/rvm
+
+rvm install 2.2.2
+gem install rails --no-ri --no-rdoc
+
+rvm gemset list
+gem install passenger --no-ri --no-rdoc
+passenger-install-apache2-module
+
+
+
+
+
+
