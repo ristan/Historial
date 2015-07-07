@@ -1,4 +1,7 @@
 
+Para poder realizar esta modificación sin reinicar, editamos también el fichero /proc/sys/kernel/hostname y definimos allí el hostname correcto del equipo para la sesión actual
+*******************************************
+
 Poner teclado español en xterm
 setxkbmap -layout es
 
