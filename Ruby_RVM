@@ -6,7 +6,7 @@ sudo apt-get install ruby-dev
 sudo apt-get install build-essential
 sudo apt-get install zlib1g-dev
 sudo apt-get install libsqlite3-dev
-sudo apt-get install mysql-client libmysqlclient-dev
+sudo apt-get install mysql-server mysql-client libmysqlclient-dev
 
 gpg2 --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
@@ -16,11 +16,9 @@ source ~/.rvm/scripts/rvm
 
 rvm install 2.2.2
 
-gem install rails --no-ri --no-rdoc
-
 rvm gemset list
 
-gem install rails
+gem install rails --no-ri --no-rdoc
 gem install libv8 -v '3.1.16.14
 gem install therubyracer
 gem install libv8
