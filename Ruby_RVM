@@ -36,7 +36,7 @@ rvm use <version_of_ruby>
 
 type rvm | head -1
 
-passenger-install-apache2-module
+# passenger-install-apache2-module
 
 
 
