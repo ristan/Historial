@@ -1,4 +1,9 @@
 
+
+No existe clave pública…. 9D6D8F6BC857C906
+apt-get install debian-keyring debian-archive-keyring.
+
+
 Reset pass de root debian
 editar linea desde grub presionando la tecla e sobre la opcion de arranque
 linux /vmlinuz-3.2.0-4-amd64 root=/dev/mapper/seacat-root ro quiet init=/bin/bash
