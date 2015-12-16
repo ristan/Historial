@@ -1,4 +1,10 @@
 
+Reset pass de root debian
+editar linea desde grub presionando la tecla e sobre la opcion de arranque
+linux /vmlinuz-3.2.0-4-amd64 root=/dev/mapper/seacat-root ro quiet init=/bin/bash
+root@(none):/# mount -o remount rw /
+eliminar los caracteres despues delos primeros :
+
 Cambiar nombre de host sin reinciar
 Para poder realizar esta modificación sin reinicar, editamos también el fichero /proc/sys/kernel/hostname y definimos allí el hostname correcto del equipo para la sesión actual
 *******************************************
