@@ -1,4 +1,4 @@
-
+ifconfig eth0 192.168.99.14 netmask 255.255.255.0 up
 
 No existe clave pública…. 9D6D8F6BC857C906
 apt-get install debian-keyring debian-archive-keyring.
