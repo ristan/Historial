@@ -8,6 +8,9 @@ $ sudo pip install --upgrade virtualenv
 
 sudo pip install django
 
+django-admin.py startproject app
+cd app
+django-admin.py startapp blog (aplicacion del proyecto)
 
 
 
