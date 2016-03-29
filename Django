@@ -21,6 +21,31 @@ correr la aplicacion con acceso remoto
 manage.py runserver 0.0.0.0:8000
 
 
+Mysql:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'blogdjango',
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'USER': 'root',
+        'PASSWORD': '123123',
+        'HOST': '',
+        'PORT': '',
+    }
+}
+
+
+Error al migrar¡
+***error creating new content types. please make sure content types
+pip install django --upgrade
+python manage.py makemigrations
+python manage.py migrate
+
+
+
+
+
 
 
 
