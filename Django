@@ -14,6 +14,7 @@ django-admin.py startapp blog (aplicacion del proyecto)
 
 ! en el archivo setting agregar la aplicacion
 
+correr la aplicacion con acceso remoto
 manage.py runserver 0.0.0.0:8000
 
 
