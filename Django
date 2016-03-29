@@ -3,6 +3,9 @@
 sudo apt-get update
 
 $ sudo apt-get install python-pip python-dev build-essential 
+$ sudo apt-get install build-essentials libmysqlclient-dev
+$ sudo apt-get install python-mysqldb
+
 $ sudo pip install --upgrade pip 
 $ sudo pip install --upgrade virtualenv
 
