@@ -10,7 +10,7 @@ $ sudo pip install --upgrade pip
 $ sudo pip install --upgrade virtualenv
 
 sudo pip install django
-
+pip freeze
 django-admin.py startproject app
 cd app
 django-admin.py startapp blog (aplicacion del proyecto)
