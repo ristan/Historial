@@ -7,6 +7,7 @@ $ sudo apt-get install build-essentials libmysqlclient-dev
 $ sudo apt-get install python-mysqldb
 
 $ sudo pip install --upgrade pip 
+$ sudo pip install --upgrade django
 $ sudo pip install --upgrade virtualenv
 
 sudo pip install django
