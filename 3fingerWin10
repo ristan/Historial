@@ -1,0 +1,25 @@
+
+Solved (Tested on Yoga 900)
+
+This is NOT mindless tinkering (killing services, etc), the OP looks like he knew what he was doing and this just worked for me straight off the bat. I'm running a Yoga 900 with stock win 10 64 bit.
+http://answers.microsoft.com/en-us/insider/forum/insider_wintp-insider_search/three-finger-swipe-for-task-view-not-working/547d5c1b-7a84-423b-bdbc-3ffc7084526a?auth=1
+
+I'm pasting the link content here for my own future reference and if the link goes down
+
+I had this problem with my Synaptics touchpad on a Lenovo laptop running Windows 10. (Fortunately it only one of two user accounts was broken)
+
+I used Regedit to fix the problem
+
+Press Win and type Regedit
+and Navigate
+HKEY_CURRENT_USER
+SOFTWARE
+Synatics
+SynTP
+TouchpadPS2 (this has numbers as well)
+3FingerGestures
+OK we are in the right place For the 3 Finger Swipes to work correctly edit the following ActionIDs to the following ActionID1 = 5c ActionID3 = 5f ActionID5 = 5d ActionID7 = 5e
+Exit the Registry Editor and reset (reboot or signout and signin)
+The 3 Finger Swipes should now work as intended. HOWEVER. Some people prefer the 3 finger swipe to control the forward and back button in browsers set ActionID3 = 1c ActionID7 = 1c
+
+https://answers.microsoft.com/en-us/insider/forum/insider_wintp-insider_search/three-finger-swipe-for-task-view-not-working/547d5c1b-7a84-423b-bdbc-3ffc7084526a?auth=1
