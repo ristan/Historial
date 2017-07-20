@@ -1,3 +1,8 @@
+
+Backup Mysql desde consola
+  mysqldump -h 10.1.59.106 -u adminMysql -p respaldo > respaldo.sql
+
+
 ifconfig eth0 192.168.99.14 netmask 255.255.255.0 up
 
 No existe clave pública…. 9D6D8F6BC857C906
