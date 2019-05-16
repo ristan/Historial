@@ -1,12 +1,14 @@
 
+Tareas para particionar y generar USB con istalardor de windows
+
 selecct disk x
-clean 
-create partition primary 
-select partition 1 
-active 
-format fs=fat32 quick 
-assign 
-exit 
+clean
+create partition primary
+select partition 1
+active
+format fs=fat32 quick
+assign
+exit
 
 luego copiar archivos en USB
-xcopy d:*.* /s/e/f e: 
+xcopy d:*.* /s/e/f e:
