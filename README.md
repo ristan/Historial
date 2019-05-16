@@ -1,4 +1,4 @@
-historial
+Historial
 =========
 
 Historial de procesos
